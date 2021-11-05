@@ -37,7 +37,7 @@ const posts = [
         "imgProfilo" : "https://i.picsum.photos/id/139/300/300.jpg?hmac=pkjmbFZuiSwWrscQ38cTv3IEuJQbsAHlh0haDEIVme4",
         "data" : "5 mesi fa",
         "testo" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti natus sapiente necessitatibus molestias, assumenda quas explicabo eveniet maxime, et blanditiis sequi debitis. Tempore veritatis voluptatum ab, sequi explicabo quas dolorum.",
-        "img" : "https://unsplash.it/600/300?image=171",
+        // "img" : "https://unsplash.it/600/300?image=171",
         "NumeroLikes" : 50
     },
 
@@ -55,7 +55,7 @@ let post = "";
 
 for (let i = 0; i < posts.length; i++){
 
-    let {nomeAutore, imgProfilo, data, testo, img, NumeroLikes} = post[i];
+    let {nomeAutore, imgProfilo, data, testo, img, NumeroLikes} = posts[i];
 
     post += `
     <div class="post">
@@ -91,5 +91,4 @@ for (let i = 0; i < posts.length; i++){
     `;
 
     containerPost.innerHTML += post;
-   
 }
