@@ -37,7 +37,7 @@ const posts = [
         "imgProfilo" : "https://i.picsum.photos/id/139/300/300.jpg?hmac=pkjmbFZuiSwWrscQ38cTv3IEuJQbsAHlh0haDEIVme4",
         "data" : "5 mesi fa",
         "testo" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti natus sapiente necessitatibus molestias, assumenda quas explicabo eveniet maxime, et blanditiis sequi debitis. Tempore veritatis voluptatum ab, sequi explicabo quas dolorum.",
-        // "img" : "https://unsplash.it/600/300?image=171",
+        "img" : "https://unsplash.it/600/300?image=171",
         "NumeroLikes" : 50
     },
 
@@ -55,40 +55,69 @@ let post = "";
 
 for (let i = 0; i < posts.length; i++){
 
-    let {nomeAutore, imgProfilo, data, testo, img, NumeroLikes} = posts[i];
+    // let {nomeAutore, imgProfilo, data, testo, img, NumeroLikes} = posts[i];
 
-    post += `
-    <div class="post">
-            <div class="post__header">
-                <div class="post-meta">                    
-                    <div class="post-meta__icon">
-                        <img class="profile-pic" src="${imgProfilo}" alt="${nomeAutore}">                    
-                    </div>
-                    <div class="post-meta__data">
-                        <div class="post-meta__author">${nomeAutore}</div>
-                        <div class="post-meta__time">${data}</div>
-                    </div>                    
+    let name = posts[i].nomeAutore;
+    let profilo = posts[i].imgProfilo;
+    let date = posts[i].data;
+    let text = posts[i].testo;
+    let imgx = posts[i].img;
+    let likes = posts[i].NumeroLikes;
+
+    let post = document.createElement('div');
+    post.classList.add('post');
+
+    let imgElement = `<img src="${imgx}" alt="">`;
+
+    if ( i == 1 ) {
+        imgElement = '';
+    }
+
+    post.innerHTML = `
+        <div class="post__header">
+            <div class="post-meta">                    
+                <div class="post-meta__icon">
+                    <img class="profile-pic" src="${profilo}" alt="${name}">                    
                 </div>
+                <div class="post-meta__data">
+                    <div class="post-meta__author">${name}</div>
+                    <div class="post-meta__time">${date}</div>
+                </div>                    
             </div>
-            <div class="post__text">${testo}</div>
-            <div class="post__image">
-                <img src="${img}" alt="">
-            </div>
-            <div class="post__footer">
-                <div class="likes js-likes">
-                    <div class="likes__cta">
-                        <a class="like-button js-like-button" href="#" data-postid="1">
-                            <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-                            <span class="like-button__label">Mi Piace </span>
-                        </a>
-                    </div>
-                    <div class="likes__counter">
-                        Piace a <b id="like-counter-1" class="js-likes-counter">${NumeroLikes}</b> persone
-                    </div>
-                </div> 
-            </div>            
         </div>
+        <div class="post__text">${text}</div>
+        <div class="post__image">
+            ${imgElement}
+        </div>
+        <div class="post__footer">
+            <div class="likes js-likes">
+                <div class="likes__cta">
+                    <a class="like-button js-like-button" data-postid="1">
+                        <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                        <span class="like-button__la<img src="${imgx}" alt="">Mi Piace </span>
+                    </a>
+                </div>
+                <div class="likes__counter">
+                    Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone
+                </div>
+            </div> 
+        </div>            
     `;
 
-    containerPost.innerHTML += post;
+    containerPost.append(post);
 }
+ let bottoni = document.querySelectorAll(".js-like-button");
+ let numeroLikes = document.querySelectorAll(".js-likes-counter");
+
+ for (let i = 0; i < bottoni.length; i++){
+     
+
+    bottoni[i].addEventListener("click",
+        function() {
+                bottoni[i].classList.add("clicked");
+                let valore = parseInt(numeroLikes[i].innerHTML);
+                console.log(valore);
+                numeroLikes[i].innerHTML = ++valore;
+        }
+    )
+ }

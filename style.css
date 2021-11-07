@@ -115,7 +115,9 @@ h1 {
     background-color: #e3e3e3
 }
 
-.like-button__icon { }
+.like-button__icon {
+
+ }
 
 .like-button__label {
     font-weight: bold;
@@ -124,4 +126,8 @@ h1 {
 .like-button--liked {
     color: #0CD977;
     cursor: default;
+}
+
+.clicked {
+    color:red;
 }
